@@ -26,7 +26,19 @@ ui <- fillPage(
              
              leafletOutput("mymap", 
                            width = "100%", 
-                           height = "100%")
+                           height = "100%"),
+             
+             absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
+                           draggable = FALSE, top = 60, left = "auto", right = 20, bottom = "auto",
+                           width = 330, height = "auto",
+                           
+                           h2("Raster Selector"),
+                           
+                           selectInput("color", "Display Raster", choices = c("Original", 
+                                                                     "Stretched", 
+                                                                     "Segmented", 
+                                                                     "Classified"))
+                           ),
                ))))
              
              
@@ -37,7 +49,7 @@ server <- function(input, output) {
      output$mymap <- renderLeaflet({
        leaflet() %>%
          addProviderTiles(provider = providers$OpenStreetMap) %>%
-         setView(lng = -92.4303707, lat = 42.4000755, zoom = 12)
+         setView(lng = -92.358665, lat = 42.499504, zoom = 12)
      })
 }
 

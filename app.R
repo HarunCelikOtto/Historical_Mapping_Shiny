@@ -24,7 +24,7 @@ ui <- fillPage(
              ),
              
              
-             leafletOutput("raster_map", 
+             leafletOutput("mymap", 
                            width = "100%", 
                            height = "100%")
                ))))
@@ -34,10 +34,10 @@ ui <- fillPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
 
-     output$raster_map <- renderLeaflet({
+     output$mymap <- renderLeaflet({
        leaflet() %>%
-         addTiles() %>%
-         leafletOptions(setView(lng = 92.4303707, lat = 42.4000755, zoom = 12))
+         addProviderTiles(provider = providers$OpenStreetMap) %>%
+         setView(lng = -92.4303707, lat = 42.4000755, zoom = 12)
      })
 }
 

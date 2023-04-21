@@ -37,9 +37,11 @@ ui <- fillPage(
                            selectInput("color", "Display Raster", choices = c("Original", 
                                                                      "Stretched", 
                                                                      "Segmented", 
-                                                                     "Classified"))
-                           ),
-               ))))
+                                                                     "Classified"))),
+        
+               )),
+    tabPanel(title = "Documentation")
+    ))
              
              
 

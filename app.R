@@ -2,6 +2,7 @@ library(shiny)
 library(leaflet)
 library(dplyr)
 
+
 # Define UI for application that has a tab for a leaflet map and a documentation tab 
 ui <- fillPage(
   navbarPage("Historical Mapping", 
@@ -25,7 +26,7 @@ ui <- fillPage(
                            
                            h2("Raster Selector"),
                            
-                           selectInput("color", "Display Raster", choices = c("Original", 
+                           selectInput("rasters", "Display Raster", choices = c("Original", 
                                                                      "Stretched", 
                                                                      "Segmented", 
                                                                      "Classified"))),
@@ -40,11 +41,34 @@ ui <- fillPage(
 # Define server logic
 server <- function(input, output) {
 
+  # Define leafletImage as selected.
+  leafletImage <- reactive({
+    if (input$rasters == "Original") {
+    leafletImage <- "img/Buchanan_Original.png"
+    }
+    else if (input$rasters =="Strecthed") {
+      leafletImage <- "img/Buchanan_Stretch.png"
+    }
+    else if (input$rasters == "Segmented") {
+      leafletImage <- "img/Buchanan_Segmented.png"
+    }
+    else if (input$rasters == "Classified") {
+      leafletImage <- "img/Buchanan_Segmented_Classified.png"
+    }
+  })
+  
      output$mymap <- renderLeaflet({
        leaflet() %>%
          addProviderTiles(provider = providers$OpenStreetMap) %>%
          setView(lng = -92.358665, lat = 42.499504, zoom = 12)
      })
+     
+     observe({
+       leafletProxy("mymap") %>%
+         addMarkers(lng = -92.358665, lat = 42.499504, label = leafletImage())
+     })
+     
+     
 }
 
 

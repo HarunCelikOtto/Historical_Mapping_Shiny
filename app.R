@@ -37,7 +37,6 @@ ui <- fillPage(
     ))
              
              
-
 # Define server logic
 server <- function(input, output) {
 
@@ -46,7 +45,7 @@ server <- function(input, output) {
     if (input$rasters == "Original") {
     leafletImage <- "img/Buchanan_Original.png"
     }
-    else if (input$rasters =="Strecthed") {
+    else if (input$rasters =="Stretched") {
       leafletImage <- "img/Buchanan_Stretch.png"
     }
     else if (input$rasters == "Segmented") {

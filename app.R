@@ -1,21 +1,12 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 library(leaflet)
 library(dplyr)
 
-# Define UI for application that draws a histogram
+# Define UI for application that has a tab for a leaflet map and a documentation tab 
 ui <- fillPage(
   navbarPage("Historical Mapping", 
              id="nav",
-             
+    #This is the interactive map tab on page.         
     tabPanel(title = "Interactive Map",
              div(class="outer",
                 
@@ -40,12 +31,13 @@ ui <- fillPage(
                                                                      "Classified"))),
         
                )),
+    #This is the documentation tab page.
     tabPanel(title = "Documentation")
     ))
              
              
 
-# Define server logic required to draw a histogram
+# Define server logic
 server <- function(input, output) {
 
      output$mymap <- renderLeaflet({

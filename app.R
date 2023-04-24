@@ -1,6 +1,7 @@
 library(shiny)
 library(leaflet)
 library(dplyr)
+library(raster)
 
 
 # Define UI for application that has a tab for a leaflet map and a documentation tab 
@@ -40,33 +41,38 @@ ui <- fillPage(
 # Define server logic
 server <- function(input, output) {
 
+  Buchanan_Original <- raster("img/png_prj/Postal_Buchanan_Route.png")
+  Buchanan_Stretched <- raster("img/png_prj/Buchanan_Stretch.png")
+  Buchanan_Segmented <- raster("img/png_prj/Buchanan_Segmented.png")
+  Buchanan_Segmented_Classified <- raster("img/png_prj/Buchanan_Segmented_Classified.png")
+  
   # Define leafletImage as selected.
   leafletImage <- reactive({
     if (input$rasters == "Original") {
-    leafletImage <- "img/Buchanan_Original.png"
+    leafletImage <- Buchanan_Original
     }
     else if (input$rasters =="Stretched") {
-      leafletImage <- "img/Buchanan_Stretch.png"
+      leafletImage <- Buchanan_Stretched
     }
     else if (input$rasters == "Segmented") {
-      leafletImage <- "img/Buchanan_Segmented.png"
+      leafletImage <- Buchanan_Segmented
     }
     else if (input$rasters == "Classified") {
-      leafletImage <- "img/Buchanan_Segmented_Classified.png"
+      leafletImage <- Buchanan_Segmented_Classified
     }
   })
   
      output$mymap <- renderLeaflet({
        leaflet() %>%
          addProviderTiles(provider = providers$OpenStreetMap) %>%
-         setView(lng = -92.358665, lat = 42.499504, zoom = 12)
+         setView(lng = -92.0485599, lat = 42.6008780, zoom = 11)
      })
      
      observe({
        leafletProxy("mymap") %>%
-         addMarkers(lng = -92.358665, lat = 42.499504, label = leafletImage())
+         addRasterImage(leafletImage())
      })
-     
+
      
 }
 

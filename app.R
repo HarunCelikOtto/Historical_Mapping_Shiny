@@ -34,7 +34,12 @@ ui <- fillPage(
         
                )),
     #This is the documentation tab page.
-    tabPanel(title = "Documentation")
+    tabPanel(title = "Documentation",
+             mainPanel("Documentation goes here")
+    )
+    
+    
+    
     ))
              
              

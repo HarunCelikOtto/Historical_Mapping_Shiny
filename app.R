@@ -35,12 +35,21 @@ ui <- fillPage(
                )),
     #This is the documentation tab page.
     tabPanel(title = "Documentation",
-             mainPanel("Documentation goes here")
+             titlePanel("Classified Maps"),
+             
+             sidebarLayout(
+               sidebarPanel("",
+                            selectInput("rasters", "Select Raster", choices = c("Original", 
+                                                                                 "Stretched", 
+                                                                                 "Segmented", 
+                                                                                 "Classified"))),
+               mainPanel(h2("Original Raster"),
+                         p("Here is more text"))
+               )))
+    
+    
+    
     )
-    
-    
-    
-    ))
              
              
 # Define server logic

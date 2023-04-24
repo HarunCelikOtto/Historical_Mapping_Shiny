@@ -9,6 +9,12 @@ div.outer {
   padding: 0;
 }
 
+#mainText {
+  overflow-y: scroll;
+  height: 100vh;
+  padding-bottom: 10;
+}
+
 #controls {
   /* Appearance */
   background-color: white;
@@ -19,6 +25,7 @@ div.outer {
   zoom: 0.9;
   transition: opacity 500ms 1s;
 }
+
 #controls:hover {
   /* Fade in while hovering */
   opacity: 0.95;

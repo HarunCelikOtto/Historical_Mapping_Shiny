@@ -1,0 +1,30 @@
+---
+output: html_fragment
+---
+# Original Raster
+
+## Libraries
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(aRcGeo)
+library(arcgisbinding)
+library(reticulate)
+
+library(raster)
+library(dplyr)
+```
+
+The original raster used in this project is a clipped portion of the the map titled [*Upper Part. Post Route Map of States of Illinois, Iowa and Missouri*](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~321446~90090751:Upper-Part--Post-Route-Map-of-State?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&qvq=q:upper%20postal%20route;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&mi=2&trs=6) dated to 1879. I've downloaded a geo-referenced copy of this map through the [David Rumsey Map Collection](https://www.davidrumsey.com/) at Stanford.
+
+```{r}
+brick("img/png_prj/Postal_Buchanan_Route.png") %>%
+  plotRGB()
+```
+
+The clipped version of the raster which I've selected for use highlights postal routes as well as rail lines across present Black Hawk county in Iowa. Effectively, we want our classifier to be able to extract the unique features on the raster. To do this we need to be able to connect to the ArcGIS environment using `aRcGeo::init_arcpy()` so that we can use the functions within the `arcpy` module.
+
+```{r, eval=TRUE}
+aRcGeo::init_arcpy(conda_env = "arcgispro-py3-DeepLearning")
+```
+
+
+

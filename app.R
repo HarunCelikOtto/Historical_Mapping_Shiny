@@ -43,8 +43,8 @@ ui <- fillPage(
                                                                                  "Stretched", 
                                                                                  "Segmented", 
                                                                                  "Classified"))),
-               mainPanel(h2("Original Raster"),
-                         p("Here is more text"))
+               mainPanel(id="mainText", 
+                         includeHTML("Original_Raster.html"))
                )))
     
     

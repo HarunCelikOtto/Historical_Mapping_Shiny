@@ -1,0 +1,34 @@
+---
+output: html_fragment
+---
+
+# Classified Raster
+
+## Libraries
+
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(aRcGeo)
+library(arcgisbinding)
+library(reticulate)
+```
+
+# ArcGIS Initialization
+
+To run our classification function we will need to initialize a connection to ArcGIS.
+
+```{r, eval=FALSE}
+aRcGeo::init_arcpy(conda_env = "arcgispro-py3-DeepLearning")
+```
+
+# Classification
+
+```{r, eval=FALSE}
+Buchanan_Segmented_Classified <- arcpy$sa$IsoClusterUnsupervisedClassification(in_raster_bands = "img/png_prj/Buchanan_Segmented.png", 
+                                                                               Number_of_classes = 7, 
+                                                                               Minimum_class_size = 20,
+                                                                               Sample_interval = 15)
+```
+
+After running our classifier, we yield the following results.
+
+![Classified Image following the Segmented Raster](img/Buchanan_Segmented_Classified.png)

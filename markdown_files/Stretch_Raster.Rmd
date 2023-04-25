@@ -2,7 +2,7 @@
 output: html_fragment
 ---
 
-# Stretch Raster
+# Stretched Raster
 
 ## Libraries
 

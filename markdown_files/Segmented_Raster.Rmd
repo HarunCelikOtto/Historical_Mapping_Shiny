@@ -1,0 +1,33 @@
+---
+output: html_fragment
+---
+
+# Segmented Raster
+
+## Libraries
+
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(aRcGeo)
+library(arcgisbinding)
+library(reticulate)
+```
+
+# ArcGIS Initialization
+
+Just as we did for the stretch function, we will need to first initialize the connection to ArcGIS to run our segmentation.
+
+```{r, eval=FALSE}
+aRcGeo::init_arcpy(conda_env = "arcgispro-py3-DeepLearning")
+```
+
+# Segment Processing
+
+```{r, eval=FALSE}
+Buchanan_Segmented <- arcpy$sa$SegmentMeanShift(in_raster = "img/png_prj/Buchanan_Stretch.png",
+                                                spectral_detail = 5,
+                                                spatial_detail = 15)
+```
+
+After running the function, we yield the following results.
+
+![Segmented Image following the Stretched Raster](img/Buchanan_Segmented.png)

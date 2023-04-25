@@ -12,12 +12,11 @@ div.outer {
 div.docPage {
   overflow: scroll;
   height: 95vh;
-  background: #A677EE;
-  padding: 0,0,0,0;
+  background: #828181;
 }
 
 pre {
-  background: #C0EE77;
+  background: #bdbdbd;
 }
 
 div.container-fluid {
@@ -26,7 +25,7 @@ div.container-fluid {
 }
 
 div.col-sm-4 {
-  padding-left: 30px;
+  padding-left: 15px;
 }
 
 div.col-sm-8 {
@@ -41,6 +40,11 @@ div.col-sm-8 {
   font-size: 28px;
 }
 
+.navbar-default {
+  background-color: #fbf1f1e8;
+  border-color: #bfbfbf;
+}
+
 body {
   color: white;
   font-family: Garamond;
@@ -49,6 +53,10 @@ body {
 
 label {
   color: #333;
+}
+
+a:link {
+  color: white;
 }
 
 #controls {

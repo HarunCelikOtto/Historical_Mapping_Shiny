@@ -35,7 +35,6 @@ ui <- fillPage(
                )),
     #This is the documentation tab page.
     tabPanel(title = "Documentation",
-             titlePanel("Classified Maps"),
              class="docPage",
              
              sidebarLayout(

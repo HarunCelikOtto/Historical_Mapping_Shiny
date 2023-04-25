@@ -36,15 +36,16 @@ ui <- fillPage(
     #This is the documentation tab page.
     tabPanel(title = "Documentation",
              titlePanel("Classified Maps"),
+             class="docPage",
              
              sidebarLayout(
                sidebarPanel("",
-                            selectInput("rasters", "Select Raster", choices = c("Original", 
+                            selectInput("documentSelect", "Select Raster", choices = c("Original", 
                                                                                  "Stretched", 
                                                                                  "Segmented", 
                                                                                  "Classified"))),
-               mainPanel(id="mainText", 
-                         includeHTML("Original_Raster.html"))
+               
+               mainPanel(htmlOutput("htmlGoesHere"))
                )))
     
     
@@ -76,16 +77,37 @@ server <- function(input, output) {
     }
   })
   
+  # Define documentText as selected.
+  documentText <- reactive({
+    if (input$documentSelect == "Original") {
+      documentText <- "html_files/Original_Raster.html"
+    }
+    else if (input$documentSelect == "Stretched") {
+      documentText <- "html_files/Stretch_Raster.html"
+    }
+    else if (input$documentSelect == "Segmented") {
+      documentText <- "html_files/Segmented_Raster.html"
+    }
+    else if (input$documentSelect =="Classified") {
+      documentText <- "html_files/Classified_Raster.html"
+    }
+  })
+  
      output$mymap <- renderLeaflet({
        leaflet() %>%
          addProviderTiles(provider = providers$OpenStreetMap) %>%
          setView(lng = -92.0485599, lat = 42.6008780, zoom = 11)
      })
      
+     
+     output$htmlGoesHere <- renderUI(
+       includeHTML(documentText())
+     )
+     
      observe({
        leafletProxy("mymap") %>%
          addRasterImage(leafletImage())
-     })
+       })
 
      
 }
